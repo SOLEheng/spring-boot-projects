@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>th:text/th:utext文本标签测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .content div{
+            float: left;
+            margin: 0 5px;
+        }
+        .box1 {
+            background-color: skyblue;
+            width: 30%;
+        }
+        .box2 {
+            background-color: greenyellow;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+        <div class="content">
+            <div class="box1">
+                <h2>box1-->th:text和th:utext区别:</h2>
+                <p><strong>使用+连接字符串:</strong></p>
+                <p th:text="'th:text标签:'+${msg}" class="msg">
+                    p标签: th:text
+                </p>
+                <p th:utext="'th:utext标签:'+${msg}" class="msg">
+                    p标签: th:utext
+                </p>
+                <p><strong>使用||连接字符串:</strong></p>
+                <p th:text="|th:text标签: ${msg}|" class="msg">
+                    p标签: th:text
+                </p>
+                <p th:utext="|th:utext标签: ${msg}|" class="msg">
+                    p标签: th:utext
+                </p>
+            </div>
+            <div class="box2" th:if="${not #strings.isEmpty(loginUser)}">
+                <h2>*{...}和 ${...}表达式:</h2>
+                <p><strong>使用${...}:</strong></p>
+                <p th:text="'loginUserId:'+${loginUser.loginUserId}">loginUserId</p>
+                <p th:text="'loginUserName:'+${loginUser.loginUserName}">loginUserName</p>
+                <p th:text="'age:'+${loginUser.age}">age</p>
+                <p><strong>使用*{...}:</strong></p>
+                <p th:text="'loginUserId:'+*{loginUser.loginUserId}">loginUserId</p>
+                <p th:text="'loginUserName:'+*{loginUser.loginUserName}">loginUserName</p>
+                <p th:text="'age:'+*{loginUser.age}">age</p>
+            </div>
+        </div>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+</body>
+</html>
